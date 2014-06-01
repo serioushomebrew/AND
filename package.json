@@ -1,0 +1,11 @@
+{
+    "name": "AND - Automatic Newsgroup Downloader",
+    "version": "0.1 Alpha",
+    "description": "Automaticly download files based on custom filters from newsgroup servers.",
+    "main": "AND.js",
+    "license": "GPL",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/serioushomebrew/AND.git"
+    }
+}

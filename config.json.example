@@ -1,0 +1,16 @@
+{
+    "database": {
+        "driver":       null,
+        "dsn":          null,
+        "username":     null,
+        "password":     null
+    },
+
+    "newsServer": {
+        "server":       null,
+        "port":         null,
+        "connections":  null,
+        "username":     null,
+        "password":     null,
+    }
+}
