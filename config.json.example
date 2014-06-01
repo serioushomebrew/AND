@@ -7,10 +7,11 @@
     },
 
     "newsServer": {
-        "server":       null,
+        "host":         null,
         "port":         null,
-        "connections":  null,
-        "username":     null,
+        "secure":       null,
+        "user":         null,
         "password":     null,
+        "timeout":      null
     }
 }
