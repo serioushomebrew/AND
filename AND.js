@@ -17,24 +17,25 @@ nntpClient.on('ready', function() {
         console.log('ARTICLE');
     });
 
-    // Error
-    nntpClient.on('error', function(err) {
-        console.log('NNTP Client Error', err);
-    });
-
-    // Close
-    nntpClient.on('close', function() {
-        console.log('NNTP Client Close');
-    });
-
-    // Connect
-    nntpClient.connect({
-        host:       config.newsServer.host,
-        port:       config.newsServer.port,
-        secure:     config.newsServer.secure,
-        user:       config.newsServer.user,
-        password:   config.newsServer.password,
-        connTimeout:config.newsServer.timeout
-    });
+    console.log('Ready');
 });
 
+// Error
+nntpClient.on('error', function(err) {
+    console.log('NNTP Client Error', err);
+});
+
+// Close
+nntpClient.on('close', function() {
+    console.log('NNTP Client Close');
+});
+
+// Connect
+nntpClient.connect({
+    host:       config.newsServer.host,
+    port:       config.newsServer.port,
+    secure:     config.newsServer.secure,
+    user:       config.newsServer.user,
+    password:   config.newsServer.password,
+    connTimeout:config.newsServer.timeout
+});
