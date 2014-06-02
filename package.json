@@ -1,6 +1,6 @@
 {
-    "name": "AND - Automatic Newsgroup Downloader",
-    "version": "0.1 Alpha",
+    "name": "AND",
+    "version": "0.0.1",
     "description": "Automaticly download files based on custom filters from newsgroup servers.",
     "main": "AND.js",
     "license": "GPL",
