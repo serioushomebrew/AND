@@ -1,17 +1,20 @@
 var config      = require('./config.json'),
 
-    nntpClient  = new require('nntp')();
+    NNTP        = require('nntp'),
+
+    nntpClient  = new NNTP();
+
 
 
 nntpClient.on('ready', function() {
     // Group
     nntpClient.group('misc.test', function(err, count, low, high) {
-
+        console.log('GROUP');
     });
 
     // Article
     nntpClient.article(function(err, n, id, headers, body) {
-
+        console.log('ARTICLE');
     });
 
     // Error
