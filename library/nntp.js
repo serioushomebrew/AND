@@ -6,18 +6,14 @@ var NNTPResource = require('nntp')
 
     NNTPEngine = new NNTPResource();
 
-function NNTP() {
-
-    // load config
-    var config = require('../config.json');
-
+function NNTP(config) {
     this.options = {
-        host:           config.newsServer.host,
-        port:           config.newsServer.port,
-        secure:         config.newsServer.secure,
-        user:           config.newsServer.user,
-        password:       config.newsServer.password,
-        connTimeout:    config.newsServer.timeout
+        host:           config.host,
+        port:           config.port,
+        secure:         config.secure,
+        user:           config.user,
+        password:       config.password,
+        connTimeout:    config.timeout
     }
     this.connected = false;
 }
@@ -54,7 +50,7 @@ NNTP.prototype.updateAll = function(lastSpotNr, lastCommentNr, lastReportNr) {
         self.updateSpots(lastSpotNr, function() {
             self.updateComments(lastCommentNr, function() {
                 self.updateReports(lastReportNr, function() {
-                   console.log('--- DONE WITH UPDATEING ---');
+                   console.log('--- DONE WITH UPDATING ---');
                     NNTPEngine.end();
                });
             });
@@ -78,32 +74,32 @@ NNTP.prototype.updateSpots = function(lastSpotNr, callback) {
     }
 }
 
-NNTP.prototype.updateComments = function(lastSpotNr, callback) {
+NNTP.prototype.updateComments = function(lastCommentNr, callback) {
     var self = this;
 
     // open connection if needed
     if(this.connected === false) {
         self.connect(function() {
-            self.updateSpots(lastSpotNr, callback);
+            self.updateComments(lastCommentNr, callback);
         });
     } else {
-        scanGroup('free.pt', lastSpotNr, function(err, nr, id, headers, body) {
+        scanGroup('free.usenet', lastCommentNr, function(err, nr, id, headers, body) {
 
             console.log('Comment #' + nr);
         }, callback);
     }
 }
 
-NNTP.prototype.updateReports = function(lastSpotNr, callback) {
+NNTP.prototype.updateReports = function(lastReportNr, callback) {
     var self = this;
 
     // open connection if needed
     if(this.connected === false) {
         self.connect(function() {
-            self.updateSpots(lastSpotNr, callback);
+            self.updateReports(lastReportNr, callback);
         });
     } else {
-        scanGroup('free.pt', lastSpotNr, function(err, nr, id, headers, body) {
+        scanGroup('free.willey', lastReportNr, function(err, nr, id, headers, body) {
 
             console.log('Report #' + nr);
             if (err) console.log(err);
@@ -157,7 +153,7 @@ function getArticles(current, last, articleFunction, callback) {
 
     if(current < last) {
         NNTPEngine.article(current, function(err, nr, id, headers, body) {
-            articleFunction(err, nr, id, headers, body);
+            articleFunction(err, current, id, headers, body);
 
             // Call the next article
             getArticles((current + 1), last, articleFunction, callback);
