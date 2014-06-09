@@ -9,6 +9,7 @@
         "url": "https://github.com/serioushomebrew/AND.git"
     },
     "dependencies": {
-        "node-nntp": "git://github.com/mscdex/node-nntp.git"
+        "node-nntp": "git://github.com/mscdex/node-nntp.git",
+        "mysql": "2.3.2"
     }
 }
