@@ -9,6 +9,6 @@
         "url": "https://github.com/serioushomebrew/AND.git"
     },
     "dependencies": {
-    	"nntp": "0.3.0"
+        "node-nntp": "git://github.com/mscdex/node-nntp.git"
     }
 }
