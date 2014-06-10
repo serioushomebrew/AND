@@ -56,18 +56,21 @@ NNTP.prototype.readArticles = function(current, last, articleFunction, callback)
 
     // Check if we need to stop
     if(current < last) {
-        NNTPEngine.article(current, function(err, nr, id, headers, body) {
-            articleFunction(err, current, id, headers, body);
+        NNTPEngine.article(current.toString(), function(err, nr, id, headers, body) {
+            articleFunction(err, nr, id, headers, body);
 
             // Call the next article
             self.readArticles((current + 1), last, articleFunction, callback);
         });
     } else {
-        callback();
+        if(callback != undefined)
+            callback();
     }
 }
 
 NNTP.prototype.disconnect = function() {
+    var self = this;
+
     // Close connection with the server
     NNTPEngine.end();
 
