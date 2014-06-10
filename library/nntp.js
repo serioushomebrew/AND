@@ -1,7 +1,3 @@
-/**
- * TODO - Save the data in the database
- */
-
 var NNTPResource    = require('nntp')
 
     EventEmitter    = require('events').EventEmitter,
